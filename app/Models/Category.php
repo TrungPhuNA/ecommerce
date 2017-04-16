@@ -33,4 +33,10 @@ class Category extends Model
         $children = Category::where('parent_id',$id)->count();
         return $children;
     }
+
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
 }

@@ -70,11 +70,17 @@
         output[0].src = URL.createObjectURL(event.target.files[0]);
     };
 
+    /**
+     *  thêm bg  khi click vào  checkbox
+     */
     $(function() {
         $('.checkbox').click(function(){
             if($(this).prop("checked") == true){
-
                $(this).parent().parent().addClass("trbg");
+            }
+            else
+            {
+                $(this).parent().parent().removeClass("trbg");
             }
             
         });

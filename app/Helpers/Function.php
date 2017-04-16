@@ -70,4 +70,23 @@
     function formatCurrency($number) {
         return number_format($number, 0, '.', '.') ." đ";
     }
+
+    function numberN($number)
+    {
+        $number = intval($number);
+        
+        if($number == 0)
+        {
+            return "<b class='text-danger'>Hết hàng</b>";
+        }
+        else if($number > 0 && $number <= 5 )
+        {
+            return "<b class='text-warning'> Sắp hết </b>";
+        }
+        else
+        {
+            return "<b class='text-info'> Còn hàng</b>";
+        }
+
+    }
  ?>

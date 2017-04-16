@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProducerRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Producer;
+use Redirect;
 
 class ProducerController extends Controller
 {
@@ -56,7 +57,7 @@ class ProducerController extends Controller
 
         $producer->fill($data);
         $producer->save();
-        return redirect()->route('backend.producer.index')->with('success', 'Cập nhật thành công !!! ');
+        return  redirect()->route('backend.producer.index')->with('success', 'Cập nhật thành công !!! ');
     }
 
 

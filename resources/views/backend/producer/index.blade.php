@@ -40,6 +40,7 @@
                                         <th>#</th>
                                         <th> Name </th>
                                         <th> Slug </th>
+                                        <th> Created_at </th>
                                         <th> Action</th>
                                     </tr>
                                 </thead>
@@ -52,6 +53,7 @@
                                             <th scope="row">{{ $item['id'] }}</th>
                                             <td>{{ $item['name'] }}</td>
                                             <td>{{ $item['slug'] }}</td>
+                                            <td>{{ $item['updated_at'] }}</td>
                                             <td>
                                                 <a class="btn btn-xs btn-default" href="{{ route('backend.producer.edit',$item['id']) }}"><i class="fa fa-pencil"></i></a>
                                                 <a class="btn btn-xs btn-danger btn-delete-action"  data-id="{{ $item['id'] }}" href="javascript:;"><i class="fa fa-trash-o"></i></a>
@@ -64,6 +66,9 @@
                                 <a href="javascript:;" class="btn btn-danger deleteall"  data-token="{{ csrf_token() }}">Delete All</a>
                                 <a href="{{ route('backend.producer.add') }}" class="btn btn-success">   Thêm mới</a>
                             </div>
+                            <div class="pull-right">
+                                {!! $producerList->links() !!}
+                            </div>  
                         </form>
                     </div>
 

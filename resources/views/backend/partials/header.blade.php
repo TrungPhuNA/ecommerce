@@ -61,11 +61,20 @@
                                     </li>
                                     
                                 
-                                    <li {{ (isset($url) && $url = 'produ') ? "active" : '' }}>
+                                    <li>
                                         <a><i class="fa fa-building"></i> Hãng sản phẩm  <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{ route('backend.producer.add') }}">Thêm mới</a></li>
                                             <li><a href="{{ route('backend.producer.index') }}">Danh sách</a></li>
+                                            
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a><i class="fa fa-database"></i> Quản lý sản phẩm   <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('backend.product.add') }}">Thêm mới</a></li>
+                                            <li><a href="{{ route('backend.product.index') }}">Danh sách</a></li>
                                             
                                         </ul>
                                     </li>

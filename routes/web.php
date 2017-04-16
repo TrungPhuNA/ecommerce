@@ -52,13 +52,28 @@ Route::group(['prefix' => '/backend'],function() {
     Route::group(['prefix' => '/producer'],function() {
         Route::get('/', ['as' => 'backend.producer.index' , 'uses' => 'Backend\ProducerController@getIndex']);
         Route::get('/add', ['as' => 'backend.producer.add' , 'uses' => 'Backend\ProducerController@getAdd']);
-        Route::post('/add',['uses' => 'Backend\producerController@postAdd']) ;
+        Route::post('/add',['uses' => 'Backend\ProducerController@postAdd']) ;
 
         Route::get('/{id}/edit', ['as' => 'backend.producer.edit' , 'uses' => 'Backend\ProducerController@getEdit']);
         Route::post('/{id}/edit', ['as' => 'backend.producer.edit' , 'uses' => 'Backend\ProducerController@postEdit']);
 
         Route::get('/{id}/delete', ['as' => 'backend.producer.delete' , 'uses' => 'Backend\ProducerController@getDelete']);
         Route::post('/deleteall', ['as' => 'backend.producer.deleteall' , 'uses' => 'Backend\ProducerController@postDeleteall']);
+
+    });
+
+
+    // category
+    Route::group(['prefix' => '/product'],function() {
+        Route::get('/', ['as' => 'backend.product.index' , 'uses' => 'Backend\ProductController@getIndex']);
+        Route::get('/add', ['as' => 'backend.product.add' , 'uses' => 'Backend\ProductController@getAdd']);
+        Route::post('/add',['uses' => 'Backend\ProductController@postAdd']) ;
+
+        Route::get('/{id}/edit', ['as' => 'backend.product.edit' , 'uses' => 'Backend\ProductController@getEdit']);
+        Route::post('/{id}/edit', ['as' => 'backend.product.edit' , 'uses' => 'Backend\ProductController@postEdit']);
+
+        Route::get('/{id}/delete', ['as' => 'backend.product.delete' , 'uses' => 'Backend\ProductController@getDelete']);
+        Route::post('/deleteall', ['as' => 'backend.product.deleteall' , 'uses' => 'Backend\ProducerController@postDeleteall']);
 
     });
 

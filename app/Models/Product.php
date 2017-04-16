@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Producer extends Model
+class Product extends Model
 {
-    protected $table = 'producers';
-    protected $fillable = ['name', 'updated_at','slug'];
-
+    protected $fillable = ['name', 'category_id', 'hot', 'thunbar','updated_at','slug','sale','price','number','status','description','producer_id','productimg_id'];
+    
     public function getList($perPage = 5, array $filter = array(), array $sort = array(), $paginate = true)
     {
         # code...
         
-        $query = Producer::whereRaw(1);
+        $query = Product::whereRaw(1);
         if(!$sort) $sort = ['created_at' => 'DESC'];
 
         foreach($sort as $key => $value) {
@@ -25,8 +24,15 @@ class Producer extends Model
         return $query->take($perPage)->get();
     }
 
-    public function products()
+
+
+
+    public function category()
     {
-        return $this->hasMany('App\Models\Product');
+        return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+    public function producer()
+    {
+        return $this->belongsTo('App\Models\Producer', 'producer_id');
     }
 }
