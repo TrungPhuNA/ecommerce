@@ -14,3 +14,55 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::get('default',function() {
+    return view('backend/layouts/default');
+});
+
+Route::get('product',function() {
+    return view('backend/product/add');
+});
+
+// 'middleware' => ['checkLogin','checkSubperadmin']
+Route::group(['prefix' => '/backend'],function() {
+    Route::get('/home',['as' => 'backend.home.index','uses' => 'Backend\HomeBackendController@getIndex']);
+
+
+    // category
+    Route::group(['prefix' => '/category'],function() {
+        Route::get('/', ['as' => 'backend.category.index' , 'uses' => 'Backend\CategoryController@getIndex']);
+        Route::get('/add', ['as' => 'backend.category.add' , 'uses' => 'Backend\CategoryController@getAdd']);
+        Route::post('/add',['uses' => 'Backend\CategoryController@postAdd']) ;
+
+        Route::get('/{id}/edit', ['as' => 'backend.category.edit' , 'uses' => 'Backend\CategoryController@getEdit']);
+        Route::post('/{id}/edit', ['as' => 'backend.category.edit' , 'uses' => 'Backend\CategoryController@postEdit']);
+
+        Route::get('/{id}/delete', ['as' => 'backend.category.delete' , 'uses' => 'Backend\CategoryController@getDelete']);
+        
+
+    });
+
+
+
+    // category
+    Route::group(['prefix' => '/producer'],function() {
+        Route::get('/', ['as' => 'backend.producer.index' , 'uses' => 'Backend\ProducerController@getIndex']);
+        Route::get('/add', ['as' => 'backend.producer.add' , 'uses' => 'Backend\ProducerController@getAdd']);
+        Route::post('/add',['uses' => 'Backend\producerController@postAdd']) ;
+
+        Route::get('/{id}/edit', ['as' => 'backend.producer.edit' , 'uses' => 'Backend\ProducerController@getEdit']);
+        Route::post('/{id}/edit', ['as' => 'backend.producer.edit' , 'uses' => 'Backend\ProducerController@postEdit']);
+
+        Route::get('/{id}/delete', ['as' => 'backend.producer.delete' , 'uses' => 'Backend\ProducerController@getDelete']);
+        Route::post('/deleteall', ['as' => 'backend.producer.deleteall' , 'uses' => 'Backend\ProducerController@postDeleteall']);
+
+    });
+
+    /* quản lý cấu hình website*/
+
+});
+

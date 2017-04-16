@@ -1,0 +1,23 @@
+
+
+.bor { border:1px solid #E6E9ED;padding: 10px 5px;margin: 5px 5px 5px 25px; }
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 47px;
+    cursor: pointer;
+    /*margin-left: 3px;*/
+}
+.text-danger
+{
+    color: red;
+    padding-top: 10px;
+}
+.trbg {background: #dfdfdf !important;}
+
+.border-cus { margin-bottom: 10px; }
+.required {color: red}
