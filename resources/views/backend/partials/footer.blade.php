@@ -32,7 +32,7 @@
      */
     $(function() {
         $("#checkall").click(function(){
-            $('input:checkbox').prop('checked', this.checked);
+            $('input:checkbox').prop('checked', this.checked).parent().parent().addClass("trbg");
         });
     })
 
@@ -92,6 +92,8 @@
     
     $(function() {
         $delete = $(".btn-delete-action");
+
+        
         $delete.click(function() {
             $id = $(this).attr("data-id");
             $tr = $(this).parent().parent();
@@ -138,7 +140,7 @@
             
             $alert = $(".showalertjs");
             $alertda = (".showalerterrorjs");
-            console.log($trdeall);
+
             $.ajax({
                 url: '{{ asset('backend/producer') }}' + '/deleteall',
                 type : "POST",
@@ -164,6 +166,46 @@
             })
         }) ;
     });
+
+
+    /**
+     * view modail product
+     */
+    
+    $(function() {
+        $viewproductmd = $(".viewproductmd");
+        $viewdetal = $(".modal-body");
+        $viewproduct = $("#viewproduct");
+
+        /**
+         * info modal
+         */
+        $tensanpham = $("#tensanpham");
+        $price = $(".price");
+        $tab_content1 = $("#tab_content1");
+        /**
+         * end
+         */
+        
+
+        $viewproductmd.click(function() {
+            $id = $(this).attr("data-idproduct");
+          
+            $.ajax({
+                url: '{{ asset('backend/product') }}' + '/' + $id + '/view',
+                type : "GET",
+                dataType : 'json',
+                success:function($data)
+                {
+                    $viewproduct.modal("show");
+                    // console.log($data['price']);
+                    $tensanpham.html($data['name']);
+                    $tab_content1.html($data['description'])
+                    // $viewdetal.html(response);
+                }
+            })
+        })
+    })
    
 </script>
 

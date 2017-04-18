@@ -18,16 +18,25 @@ class ProductController extends Controller
 
     public function __construct(Category $category, Product $product, Producer $producer)
     {
-        $this->product = $product  ;
-        $this->producer = $producer  ;
-        $this->category = $category  ;
+        $this->product  = $product;
+        $this->producer = $producer;
+        $this->category = $category;
        
     }
-    public function getIndex()
+    public function getIndex(Request $request)
     {
         # code
-        $product = $this->product->getList();
-        return view('backend.product.index',compact('product'));
+        $name        = $request->input('name'); 
+        $category_tk = intval($request->input('category_tk')); 
+        $producer_tk = intval($request->input('producer_tk')); 
+
+
+        $product     = Product::whereRaw(1)->search($name,$category_tk,$producer_tk)->paginate(5);
+        $category    = $this->category->getSort();
+        $producer    = $this->producer->all();
+        
+       
+        return view('backend.product.index',compact('product','producer','category','name','category_tk','producer_tk'));
     }
 
     public function getAdd()
@@ -67,6 +76,7 @@ class ProductController extends Controller
 
     public function postEdit($id , Request $request)
     {
+
         # code...
         $product = $this->product->findOrFail($id);
         $data['slug'] = to_slug($request->input("name"));
@@ -82,5 +92,12 @@ class ProductController extends Controller
         $product->fill($data);
         $product->save();
         return redirect()->route('backend.product.index')->with('success', 'Cập nhật thành công !!! ');
+    }
+
+    public function getView($id)
+    {
+        $id = intval($id);
+        $product = $this->product->findOrFail($id);
+        echo  $product;
     }
 }

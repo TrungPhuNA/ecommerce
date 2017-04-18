@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
@@ -18,6 +19,7 @@ class Product extends Model
         foreach($sort as $key => $value) {
             $query->orderBy($key, $value);
         }
+       
         if($paginate) {
             return $query->paginate($perPage);
         }
@@ -25,6 +27,13 @@ class Product extends Model
     }
 
 
+    public function scopeSearch($query = array() , $name,$category_tk,$producer_tk)
+    {
+        return $query->where("name","like","%".$name."%")
+                    ->orwhere("description","like","%".$name."%")
+                    ->where("category_id",$category_tk)
+                    ->where("producer_id",$producer_tk);
+    }
 
 
     public function category()

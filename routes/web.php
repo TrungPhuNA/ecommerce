@@ -63,7 +63,7 @@ Route::group(['prefix' => '/backend'],function() {
     });
 
 
-    // category
+    // product
     Route::group(['prefix' => '/product'],function() {
         Route::get('/', ['as' => 'backend.product.index' , 'uses' => 'Backend\ProductController@getIndex']);
         Route::get('/add', ['as' => 'backend.product.add' , 'uses' => 'Backend\ProductController@getAdd']);
@@ -72,9 +72,10 @@ Route::group(['prefix' => '/backend'],function() {
         Route::get('/{id}/edit', ['as' => 'backend.product.edit' , 'uses' => 'Backend\ProductController@getEdit']);
         Route::post('/{id}/edit', ['as' => 'backend.product.edit' , 'uses' => 'Backend\ProductController@postEdit']);
 
+        Route::get('/{id}/view', ['as' => 'backend.product.view' , 'uses' => 'Backend\ProductController@getView']);
         Route::get('/{id}/delete', ['as' => 'backend.product.delete' , 'uses' => 'Backend\ProductController@getDelete']);
         Route::post('/deleteall', ['as' => 'backend.product.deleteall' , 'uses' => 'Backend\ProducerController@postDeleteall']);
-
+       
     });
 
     /* quản lý cấu hình website*/
